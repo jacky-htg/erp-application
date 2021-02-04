@@ -1,2 +1,2 @@
-# inventory-app
-inventory app using java android and grpc
+# erp-application
+ERP Application using kotlin android and grpc client
