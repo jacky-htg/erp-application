@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Erp Application</string>
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Lupa Password</string>
+    <string name="registration">Daftar</string>
 </resources>
