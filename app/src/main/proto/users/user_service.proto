@@ -1,0 +1,12 @@
+syntax = "proto3";
+package wiradata.users;
+
+option go_package = "pb/users;users";
+option java_package = "com.wiradata.erpapplication";
+
+import "users/user_message.proto";
+
+service UserService {
+  rpc Create(User) returns (User) {}
+  rpc Update(User) returns (User) {}
+}
