@@ -28,6 +28,6 @@ service RegionService {
   rpc Create(Region) returns (Region) {}
   rpc Update(Region) returns (Region) {}
   rpc View(Id) returns (Region) {}
-  rpc Delete(Id) returns (Boolean) {}
+  rpc Delete(Id) returns (MyBoolean) {}
   rpc List(ListRegionRequest) returns (stream ListRegionResponse) {}
 }

@@ -32,7 +32,7 @@ service GroupService {
   rpc Create(Group) returns (Group) {}
   rpc Update(Group) returns (Group) {}
   rpc View(Id) returns (Group) {}
-  rpc Delete(Id) returns (Boolean) {}
+  rpc Delete(Id) returns (MyBoolean) {}
   rpc List(ListGroupRequest) returns (stream ListGroupResponse) {}
   rpc GrantAccess(GrantAccessRequest) returns (Message) {}
   rpc RevokeAccess(GrantAccessRequest) returns (Message) {}

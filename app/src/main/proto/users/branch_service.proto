@@ -28,6 +28,6 @@ service BranchService {
   rpc Create(Branch) returns (Branch) {}
   rpc Update(Branch) returns (Branch) {}
   rpc View(Id) returns (Branch) {}
-  rpc Delete(Id) returns (Boolean) {}
+  rpc Delete(Id) returns (MyBoolean) {}
   rpc List(ListBranchRequest) returns (stream ListBranchResponse) {}
 }

@@ -39,5 +39,5 @@ service AuthService {
   rpc ForgotPassword(ForgotPasswordRequest) returns (Message) {}
   rpc ResetPassword(ResetPasswordRequest) returns (Message) {}
   rpc ChangePassword(ChangePasswordRequest) returns (Message) {}
-  rpc IsAuth(String) returns (Boolean) {}
+  rpc IsAuth(MyString) returns (MyBoolean) {}
 }
