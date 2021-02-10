@@ -2,7 +2,8 @@ syntax = "proto3";
 package wiradata.users;
 
 option go_package = "pb/users;users";
-option java_package = "com.wiradata.erpapplication";
+option java_package = "com.wiradata.erpapplication.users";
+option java_multiple_files = true;
 
 import "google/protobuf/timestamp.proto";
 import "users/user_message.proto";
