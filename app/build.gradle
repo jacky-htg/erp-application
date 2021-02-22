@@ -69,11 +69,11 @@ dependencies {
     implementation 'io.grpc:grpc-okhttp:1.35.0'
     implementation 'io.grpc:grpc-stub:1.35.0'
 
-    implementation 'com.google.api.grpc:googleapis-common-protos:0.0.3'
-    implementation 'com.google.protobuf:protobuf-java:3.14.0'
+    // implementation 'com.google.api.grpc:googleapis-common-protos:0.0.3'
+    //implementation 'com.google.protobuf:protobuf-java:3.14.0'
 
-    // implementation 'com.google.protobuf:protobuf-lite:3.0.1'
-    // implementation 'io.grpc:grpc-protobuf-lite:1.25.0'
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    implementation 'io.grpc:grpc-protobuf-lite:1.25.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
