@@ -2,6 +2,7 @@ package com.wiradata.erpapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.wiradata.erpapplication.service.AuthService
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -10,10 +11,10 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         loginButton.setOnClickListener {
-            val username = loginUsernameEditText.text
-            val password = loginPasswordEditText.text
-            println(username)
-            println(password)
+            AuthService(this).login(
+                loginUsernameEditText.text.toString(),
+                loginPasswordEditText.text.toString()
+            )
         }
     }
 }
