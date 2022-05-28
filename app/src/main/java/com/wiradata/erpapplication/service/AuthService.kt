@@ -6,6 +6,7 @@ import com.wiradata.erpapplication.GrpcService
 import com.wiradata.erpapplication.users.AuthServiceGrpc
 import com.wiradata.erpapplication.users.LoginRequest
 import com.wiradata.erpapplication.users.LoginResponse
+import java.util.concurrent.TimeUnit
 
 class AuthService(context: Context) {
     private lateinit var stub: AuthServiceGrpc.AuthServiceBlockingStub
@@ -14,9 +15,10 @@ class AuthService(context: Context) {
         val chanel = GrpcService().createMangagedChanel()
         stub = AuthServiceGrpc.newBlockingStub(chanel)
         val request =
-            LoginRequest.newBuilder().setUsername("wira-admin").setPassword("1234").build()
-        var response = stub.login(request)
+            LoginRequest.newBuilder().setUsername(user).setPassword(password).build()
+        var response : LoginResponse = stub.login(request)
         Log.i("adit :", response.toString())
+        chanel.awaitTermination(5, TimeUnit.SECONDS);
         return response
     }
 }
