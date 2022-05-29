@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
         val mPrefs: SharedPreferences = getSharedPreferences("MyMode", 0)
         val gson = Gson()
         val json: String = mPrefs.getString("AuthObj", "").toString()
-        val authObj: AuthObj = gson.fromJson(json, AuthObj::class.java)
+        val authObj: AuthObj? = gson.fromJson(json, AuthObj::class.java)
         if (json.isEmpty()) {
            loginPage()
         } else {
-            welcomeText.setText("Welcome " + authObj.user_.name_)
+            welcomeText.setText("Welcome " + (authObj?.user_?.name_ ?: "User"))
             btnLogout.setOnClickListener {
                 mPrefs.edit().clear().commit()
                 loginPage()

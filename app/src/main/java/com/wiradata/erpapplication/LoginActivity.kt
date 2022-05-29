@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Attention")
         builder.setMessage("Invalid username or password. Please supply valid username and password.")
-        builder.setPositiveButton("OK") { dialog, which ->
+        builder.setNeutralButton("OK") { dialog, which ->
             loginUsernameEditText.setText("")
             loginPasswordEditText.setText("")
         }
