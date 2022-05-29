@@ -1,12 +1,16 @@
 package com.wiradata.erpapplication
 
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.wiradata.erpapplication.service.AuthService
 import com.wiradata.erpapplication.users.LoginResponse
 import kotlinx.android.synthetic.main.activity_login.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.gson.Gson
 
 class LoginActivity : AppCompatActivity() {
 
@@ -38,8 +42,15 @@ class LoginActivity : AppCompatActivity() {
         builder.show()
     }
 
-    private fun success(){
+    private fun success(authObj: LoginResponse ){
         Toast.makeText(applicationContext, "Login Success", Toast.LENGTH_SHORT).show()
+        val mPrefs: SharedPreferences = getSharedPreferences("MyMode", 0)
+        val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
+        val myGson: Gson =  Gson()
+        val myJson: String = myGson.toJson(authObj)
+        Log.i("jacky", myJson)
+        prefsEditor.putString("AuthObj", myJson)
+        prefsEditor.commit()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,13 +59,17 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
            if (formIsValid()) {
-               var loginAuth: LoginResponse =  AuthService(this).login(
+               var authObj: LoginResponse =  AuthService(this).login(
                    loginUsernameEditText.text.toString(),
                    loginPasswordEditText.text.toString()
                )
 
-               if (loginAuth.token.isEmpty()) failed()
-               else success()
+               if (authObj.token.isEmpty()) failed()
+               else {
+                   success(authObj)
+                   val mainIntent = Intent(this, MainActivity::class.java)
+                   startActivity(mainIntent)
+               }
            }
         }
     }

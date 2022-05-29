@@ -21,7 +21,6 @@ class AuthService(context: Context) {
             val request =
                 LoginRequest.newBuilder().setUsername(user).setPassword(password).build()
             response = stub.login(request)
-            Log.i("adit :", response.toString())
             chanel.awaitTermination(5, TimeUnit.SECONDS);
             return response
         }
