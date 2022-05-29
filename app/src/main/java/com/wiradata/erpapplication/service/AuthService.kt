@@ -13,12 +13,14 @@ class AuthService(context: Context) {
     private lateinit var stub: AuthServiceGrpc.AuthServiceBlockingStub
 
     fun login(user: String, password: String): LoginResponse {
+        var response : LoginResponse = LoginResponse.newBuilder().build()
+
         try {
             val chanel = GrpcService().createMangagedChanel()
             stub = AuthServiceGrpc.newBlockingStub(chanel)
             val request =
                 LoginRequest.newBuilder().setUsername(user).setPassword(password).build()
-            var response : LoginResponse = stub.login(request)
+            response = stub.login(request)
             Log.i("adit :", response.toString())
             chanel.awaitTermination(5, TimeUnit.SECONDS);
             return response
@@ -28,6 +30,6 @@ class AuthService(context: Context) {
         } catch (e : Exception){
             Log.i("adit :", "cause exception " + e.cause)
         }
-        return LoginResponse.newBuilder().build()
+        return response
     }
 }

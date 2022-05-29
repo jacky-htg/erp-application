@@ -6,7 +6,7 @@ import java.util.concurrent.Executors
 class GrpcService() {
     fun createMangagedChanel() =
         ManagedChannelBuilder
-            .forAddress("168.235.70.115",8001)
+            .forTarget(BuildConfig.SERVER_URL)
             .executor(Executors.newSingleThreadExecutor())
             .usePlaintext()
             .enableRetry()
