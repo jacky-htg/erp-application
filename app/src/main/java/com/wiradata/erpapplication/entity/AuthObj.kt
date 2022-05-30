@@ -1,6 +1,6 @@
 package com.wiradata.erpapplication.entity
 
-class AuthObj {
-    public lateinit var token_:String
-    public lateinit var user_ : UserObj
-}
+data class AuthObj(
+    var token_:String,
+    var user_ : UserObj
+)
