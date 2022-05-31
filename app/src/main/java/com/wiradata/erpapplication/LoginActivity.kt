@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.wiradata.erpapplication.service.AuthService
-import com.wiradata.erpapplication.users.LoginResponse
 import kotlinx.android.synthetic.main.activity_login.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
+import com.wiradata.erpapplication.users.LoginResponse
 
 class LoginActivity : AppCompatActivity() {
 
@@ -46,10 +46,16 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, "Login Success", Toast.LENGTH_SHORT).show()
         val mPrefs: SharedPreferences = getSharedPreferences("MyMode", 0)
         val prefsEditor: SharedPreferences.Editor = mPrefs.edit()
-        val myGson: Gson =  Gson()
-        val myJson: String = myGson.toJson(authObj)
-        Log.i("jacky", myJson)
-        prefsEditor.putString("AuthObj", myJson)
+        prefsEditor.putString("authToken", authObj.token)
+        prefsEditor.putString("authUserName", authObj.user.name)
+        prefsEditor.putString("authUserId", authObj.user.id)
+        prefsEditor.putString("authCompanyId", authObj.user.companyId)
+
+        var myObj: Array<String> = emptyArray()
+        for (access in authObj.user.group.accessList) {
+            myObj = myObj.plus(access.name)
+        }
+        prefsEditor.putString("authAccess", Gson().toJson(myObj))
         prefsEditor.commit()
     }
 
